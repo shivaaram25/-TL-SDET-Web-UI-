@@ -64,7 +64,7 @@ public class TestCase {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
-	public static void webOperation(){
+	public static void webOperation() throws InterruptedException{
         driver.findElement(By.linkText("United Sates")).click();	
         driver.findElement(By.id("Close_Cancel_Line")).click();
         driver.findElement(By.id("gh-search-input")).sendKeys("laptops computers");
@@ -103,8 +103,35 @@ public class TestCase {
 	int inum5= StarCoutnumber.size();
     System.out.println(inum5);
     
+    WebElement eleCheckBox3 = driver.findElement(By.xpath("//input[@value='6421639']/following-sibling::i[1]"));
+    eleCheckBox3.isSelected();
     
 
+    WebElement eleCheckBox4 = driver.findElement(By.xpath("//input[@value='6333551']/following-sibling::i[1]"));
+    eleCheckBox4.isSelected();
+    
+    driver.findElement(By.xpath("//a[contains(@class,'compare-button btn')]")).click(); 
+    Thread.sleep(2000);
+    
+    WebElement Sizeone = driver.findElement(By.xpath("//td[contains(@class,'table-cell body-copy')]/following-sibling::td)[4]"));
+    
+    WebElement Sizetwo = driver.findElement(By.xpath("//td[contains(@class,'table-cell body-copy')]/following-sibling::td)[5]"));
+    String text3 = Sizeone.getText();
+    String text4 = Sizetwo.getText();
+    int sizenumone = Integer.parseInt(text3);
+    int sizenumtwo = Integer.parseInt(text4);
+
+    if (sizenumone>sizenumtwo) {
+    	
+    	 driver.findElement(By.xpath("//button[text()='Add to Cart'])[1]")).click();
+		
+	}
+    else {
+   	 driver.findElement(By.xpath("//button[text()='Add to Cart'])[2]")).click();
+    
+    	}
+	
+   
 	}
 
 	public static void closeBrowser(){
